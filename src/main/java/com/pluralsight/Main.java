@@ -1,7 +1,9 @@
 package com.pluralsight;
+
 import java.util.ArrayList;
 import java.io.*;
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         ArrayList<Product> inventory = getInventory();
@@ -51,29 +53,29 @@ public class Main {
     }
 
 
-        public static ArrayList<Product> getInventory () {
-            ArrayList<Product> inventory = new ArrayList<Product>();
+    public static ArrayList<Product> getInventory() {
+        ArrayList<Product> inventory = new ArrayList<Product>();
 
-            try {
-                FileReader fileReader = new FileReader("inventory.csv");
-                BufferedReader bufReader = new BufferedReader(fileReader);
+        try {
+            FileReader fileReader = new FileReader("inventory.csv");
+            BufferedReader bufReader = new BufferedReader(fileReader);
 
-                String input;
+            String input;
 
-                while ((input = bufReader.readLine()) != null) {
-                    String[] tokens = input.split("\\|");
+            while ((input = bufReader.readLine()) != null) {
+                String[] tokens = input.split("\\|");
 
-                    int id = Integer.parseInt(tokens[0]);
-                    String name = tokens[1];
-                    double price = Double.parseDouble(tokens[2]);
+                int id = Integer.parseInt(tokens[0]);
+                String name = tokens[1];
+                double price = Double.parseDouble(tokens[2]);
 
-                    inventory.add(new Product(id, name, price));
-                }
-                bufReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+                inventory.add(new Product(id, name, price));
             }
-            return inventory;
-
+            bufReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return inventory;
+
     }
+}
